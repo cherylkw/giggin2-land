@@ -28,7 +28,7 @@ export function Navigation() {
             alt="Giggin'"
             width={300}
             height={96}
-            className="h-[4.5rem] w-auto"
+            className="h-[6.5rem] w-auto"
           />
         </Link>
 

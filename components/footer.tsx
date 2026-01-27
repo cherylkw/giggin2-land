@@ -51,7 +51,7 @@ export function Footer() {
                     alt="Giggin'"
                     width={300}
                     height={96}
-                    className="h-[4.5rem] w-auto brightness-0 invert"
+                    className="h-[6.5rem] w-auto brightness-0 invert"
                   />
                 </motion.div>
               </Link>
