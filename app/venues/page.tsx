@@ -84,7 +84,7 @@ export default function VenuesPage() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                   className="absolute -bottom-6 -left-6 rounded-2xl bg-white p-6 shadow-xl"
                 >
