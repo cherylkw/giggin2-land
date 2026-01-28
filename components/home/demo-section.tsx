@@ -238,7 +238,7 @@ export function DemoSection() {
                 setCycleCount((prev) => prev + 1);
               }
               // After 3 cycles, stop completely
-            }, 6000);
+            }, 2000);
           }, 300);
         }, 500);
       }
