@@ -15,6 +15,7 @@ const capabilities = [
     description:
       "Get reliable turnout forecasts based on artist, venue, pricing, and timing before guarantees and marketing spend are locked.",
     color: "bg-[#f97316]",
+    image: "/images/concert-crowd.jpg",
   },
   {
     icon: Layers,
@@ -22,6 +23,7 @@ const capabilities = [
     description:
       "Test pricing and marketing scenarios before committing so you can see what actually improves margin, not just sales.",
     color: "bg-[#7c3aed]",
+    image: "/images/friends-concert.jpg",
   },
   {
     icon: Lightbulb,
@@ -29,12 +31,14 @@ const capabilities = [
     description:
       "Receive clear guidance on how to optimize each event for stronger turnout and better unit economics.",
     color: "bg-[#14b8a6]",
+    image: "/images/venue-interior.jpg",
   },
   {
     icon: DollarSign,
     title: "Financial visibility",
     description: "Understand payouts, splits, and promoter exposure before the show, not after the money is gone.",
     color: "bg-[#ec4899]",
+    image: "/images/dj-performance.jpg",
   },
 ];
 
@@ -86,7 +90,7 @@ export default function PromotersPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative hidden lg:block"
+                className="relative"
               >
                 <div className="group relative aspect-video overflow-hidden rounded-3xl">
                   <Image
@@ -139,13 +143,23 @@ export default function PromotersPage() {
                     whileHover={{ scale: 1.02, y: -8 }}
                     className={`group relative h-full overflow-hidden rounded-3xl ${capability.color} p-8`}
                   >
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-black/10">
-                      <capability.icon className="h-6 w-6 text-white" />
+                    {/* Background image */}
+                    <Image
+                      src={capability.image || "/placeholder.svg"}
+                      alt=""
+                      fill
+                      className="object-cover opacity-30 transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="relative z-10">
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-black/10">
+                        <capability.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="mt-6 text-xl font-bold text-white">
+                        {capability.title}
+                      </h3>
+                      <p className="mt-4 text-white/80">{capability.description}</p>
                     </div>
-                    <h3 className="mt-6 text-xl font-bold text-white">
-                      {capability.title}
-                    </h3>
-                    <p className="mt-4 text-white/80">{capability.description}</p>
                   </motion.div>
                 </StaggerItem>
               ))}
@@ -187,8 +201,30 @@ export default function PromotersPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="waitlist" className="bg-foreground py-24 lg:py-32">
-          <FadeIn className="mx-auto max-w-3xl px-6 text-center lg:px-8">
+        <section id="waitlist" className="relative overflow-hidden bg-foreground py-24 lg:py-32">
+          {/* Floating images */}
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [12, 15, 12] }}
+            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="pointer-events-none absolute -left-20 top-10 h-40 w-40 overflow-hidden rounded-3xl opacity-20"
+          >
+            <Image src="/images/venue-interior.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 15, 0], rotate: [-12, -15, -12] }}
+            transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+            className="pointer-events-none absolute -right-10 bottom-10 h-48 w-48 overflow-hidden rounded-3xl opacity-20"
+          >
+            <Image src="/images/concert-crowd.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, -10, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            className="pointer-events-none absolute right-1/4 top-20 h-32 w-32 overflow-hidden rounded-full opacity-15"
+          >
+            <Image src="/images/dj-performance.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <FadeIn className="relative z-10 mx-auto max-w-3xl px-6 text-center lg:px-8">
             <h2 className="text-4xl font-black italic tracking-tight text-white md:text-5xl">
               Ready to book with confidence?
             </h2>

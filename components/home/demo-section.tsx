@@ -239,7 +239,7 @@ export function DemoSection() {
               }
               // After 3 cycles, stop completely
             }, 6000);
-          }, 800);
+          }, 300);
         }, 500);
       }
     }, 40);

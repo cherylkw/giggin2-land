@@ -14,18 +14,21 @@ const benefits = [
     title: "Better calendar consistency",
     description:
       "Fill more nights with shows that actually draw, reducing dark dates and increasing revenue per night.",
+    image: "/images/friends-concert.jpg",
   },
   {
     icon: Users,
     title: "Fewer low-attendance nights",
     description:
       "Match with artists who already show real demand in your market, reducing weak shows and missed targets.",
+    image: "/images/concert-crowd.jpg",
   },
   {
     icon: Sparkles,
     title: "Smarter artist matching",
     description:
       "Find artists whose audience size, style, and demand actually fit your room and capacity.",
+    image: "/images/venue-interior.jpg",
   },
 ];
 
@@ -70,7 +73,7 @@ export default function VenuesPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative hidden lg:block"
+                className="relative"
               >
                 <div className="group relative aspect-[4/3] overflow-hidden rounded-3xl">
                   <Image
@@ -84,7 +87,7 @@ export default function VenuesPage() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.5 }}
                   whileHover={{ scale: 1.05 }}
                   className="absolute -bottom-6 -left-6 rounded-2xl bg-white p-6 shadow-xl"
                 >
@@ -131,17 +134,27 @@ export default function VenuesPage() {
                       index === 0 ? "bg-[#14b8a6]" : index === 1 ? "bg-foreground" : "bg-[#f97316]"
                     }`}
                   >
-                    <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${
-                      index === 1 ? "bg-white/10" : "bg-black/10"
-                    }`}>
-                      <benefit.icon className={`h-6 w-6 ${index === 1 ? "text-white" : "text-white"}`} />
+                    {/* Background image */}
+                    <Image
+                      src={benefit.image || "/placeholder.svg"}
+                      alt=""
+                      fill
+                      className="object-cover opacity-30 transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="relative z-10">
+                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${
+                        index === 1 ? "bg-white/10" : "bg-black/10"
+                      }`}>
+                        <benefit.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="mt-6 text-xl font-bold text-white">
+                        {benefit.title}
+                      </h3>
+                      <p className="mt-4 text-white/80">
+                        {benefit.description}
+                      </p>
                     </div>
-                    <h3 className={`mt-6 text-xl font-bold ${index === 1 ? "text-white" : "text-white"}`}>
-                      {benefit.title}
-                    </h3>
-                    <p className={`mt-4 ${index === 1 ? "text-white/70" : "text-white/80"}`}>
-                      {benefit.description}
-                    </p>
                   </motion.div>
                 </StaggerItem>
               ))}
@@ -214,8 +227,30 @@ export default function VenuesPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="waitlist" className="bg-[#14b8a6] py-24 lg:py-32">
-          <FadeIn className="mx-auto max-w-3xl px-6 text-center lg:px-8">
+        <section id="waitlist" className="relative overflow-hidden bg-[#14b8a6] py-24 lg:py-32">
+          {/* Floating images */}
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [12, 15, 12] }}
+            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="pointer-events-none absolute -left-20 top-10 h-40 w-40 overflow-hidden rounded-3xl opacity-30"
+          >
+            <Image src="/images/venue-interior.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 15, 0], rotate: [-12, -15, -12] }}
+            transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+            className="pointer-events-none absolute -right-10 bottom-10 h-48 w-48 overflow-hidden rounded-3xl opacity-30"
+          >
+            <Image src="/images/dj-performance.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, -10, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+            className="pointer-events-none absolute right-1/4 top-20 h-32 w-32 overflow-hidden rounded-full opacity-20"
+          >
+            <Image src="/images/concert-crowd.jpg" alt="" fill className="object-cover" />
+          </motion.div>
+          <FadeIn className="relative z-10 mx-auto max-w-3xl px-6 text-center lg:px-8">
             <h2 className="text-4xl font-black italic tracking-tight text-white md:text-5xl">
               Ready to fill your calendar?
             </h2>
