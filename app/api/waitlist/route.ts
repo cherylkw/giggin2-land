@@ -37,7 +37,7 @@ const userTypeMessages: Record<UserType, { heading: string; description: string 
 
 // Use your verified sender when ready, otherwise keep resend.dev for testing
 const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL || "Giggin' <onboarding@resend.dev>";
+  process.env.RESEND_FROM_EMAIL || "Giggin' <info@epicsound.io>";
 
 const INTERNAL_NOTIFY_TO =
   process.env.INTERNAL_NOTIFY_TO || "info@epicsound.io";
