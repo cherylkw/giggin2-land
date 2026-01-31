@@ -42,6 +42,10 @@ const FROM_EMAIL =
 const INTERNAL_NOTIFY_TO =
   process.env.INTERNAL_NOTIFY_TO || "info@epicsound.io";
 
+const sleep = (ms: number) =>
+  new Promise(resolve => setTimeout(resolve, ms));
+
+
 export async function POST(request: Request) {
   try {
     const { email, userType = "fan" } = await request.json();
@@ -78,6 +82,8 @@ export async function POST(request: Request) {
         </div>
       `,
     });
+
+    await sleep(600);
 
     // 3) Send confirmation email to the user (optional, but recommended)
     await resend.emails.send({
